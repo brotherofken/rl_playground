@@ -141,12 +141,12 @@ env = gym.make(env_name)
 
 # In[]
 
-ia = PolicyIterationAgent(env, 1.) #0.5, -0.7, -0.075)
-ia.learn(0.00001)
+ia = PolicyIterationAgent(env, 0.9) #0.5, -0.7, -0.075)
+ia.learn(0.0000001)
 
 # In[]
 
-ia = ValueIterationAgent(env, 0,99) #0.5, -0.7, -0.075)
+ia = ValueIterationAgent(env, 0.99) #0.5, -0.7, -0.075)
 ia.learn(0.0000001)
 
 # In[]
@@ -156,15 +156,18 @@ if env_name == 'FrozenLake8x8-v0':
     np.set_printoptions(precision=2, suppress=True)
     
     def v_pp():
-       print(np.array(list(pia.values)).reshape(env.ncol, env.nrow))
+       print(np.array(list(ia.values)).reshape(env.ncol, env.nrow))
     
     
     def p_pp():
        mapping = {
- 
+          0: '<',
+          1: 'v',
+          2: '>',
+          3: '^'
        }
     
-       print(np.array(list(map(lambda s: mapping[pia.policy[s]] if env.desc.flatten()[s] != b'H' else '#',
+       print(np.array(list(map(lambda s: mapping[ia.policy[s]] if env.desc.flatten()[s] != b'H' else '#',
                            np.arange(env.nS)))).reshape(env.ncol, env.nrow))
     
     v_pp()
