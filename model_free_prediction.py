@@ -161,26 +161,26 @@ class TDlDMFPredictor(object):
 
         return values
 
-        
-# In[]
-env_name = 'FrozenLake8x8-v0'  # 'Taxi-v1'
-env = gym.make(env_name)
-
-# In[]
-np.random.seed(43)
-policy = DiscretePolicy(env)
-
-policy.policy = ia.policy
-
-mfp = MonteCarloDMFPredictor(env)
-mfp = TD0DMFPredictor(env, alpha=0.001)
-mfp = TDlDMFPredictor(env, alpha=0.001, llambda=0.9)
-
-values = mfp.evaluate(policy, iterations=10000, discount=0.9)
-
-print values.reshape((8, 8))
-print
-print ia.values.reshape((8, 8))
-
+if False:
+    # In[]
+    env_name = 'FrozenLake8x8-v0'  # 'Taxi-v1'
+    env = gym.make(env_name)
+    
+    # In[]
+    np.random.seed(43)
+    policy = DiscretePolicy(env)
+    
+    policy.policy = ia.policy
+    
+    mfp = MonteCarloDMFPredictor(env)
+    mfp = TD0DMFPredictor(env, alpha=0.001)
+    mfp = TDlDMFPredictor(env, alpha=0.001, llambda=0.9)
+    
+    values = mfp.evaluate(policy, iterations=10000, discount=0.9)
+    
+    print values.reshape((8, 8))
+    print
+    print ia.values.reshape((8, 8))
+    
     # In[]
 
